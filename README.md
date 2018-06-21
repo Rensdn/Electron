@@ -107,3 +107,57 @@ electron 安装 &amp;&amp; electron 两种打包方案
 ````
 #### 2. electron-packager
 
+* 安装依赖
+
+    + 使用命令 `npm install electron-packager --save-dev` or `npm install electron-packager -g`安装好之后会在package.json中的devDependencies生成代码:
+    ````
+    "devDependencies": {
+        "electron-packager": "^9.1.0"
+    }
+    ````
+    ````
+    注意：
+    1、打包时要分清devDependencies与dependencies的区别，文章后会讲。
+    2、package.json 的额外字段 —— productName、author 和 description，虽然这几个字段并不是打包必备的，但它们会在 Windows 的 Squirrel 安装包（用于自动更新）中使用到，所以请读者根据实际情况添加。
+    ````
+* 打包
+
+    安装好模块之后，就可以对应用进行打包。electron-packager的打包基本命令是：
+    ````
+    electron-packager <sourcedir> <appname> <platform> <architecture> <electron version> <optional options>
+    ````
+    参数说明：
+    
+    + sourcedir：项目所在路径
+    + appname：应用名称
+    + platform：确定了你要构建哪个平台的应用（Windows、Mac 还是 Linux）
+    + architecture：决定了使用 x86 还是 x64 还是两个架构都用
+    + electron version：electron 的版本
+    + optional options：可选选项
+    
+    为了方便起见，在`package.json`中添加代码：
+    ````
+    "scripts": {
+        "package": "electron-packager ./ myapp --out ./OutApp --version 1.7.9 --overwrite --icon=./app/img/icon/icon.ico"
+      }
+    ```` 
+    然后在命令行中执行`npm run package`
+    
+    打包成功后，会在OutApp目录（此处的目录是在参数中配置的）下生成.exe，运行该文件，并且没有报错，则说明本次打包成功。
+    
+* 特点
+1. 支持平台有：Windows (32/64 bit)、OS X (also known as macOS)、Linux (x86/x86_64);
+2. 进行应用更新时，使用electron内置的autoUpdate进行更新
+3. 支持CLI和JS API两种使用方式；
+
+##### devDependencies与dependencies的区别
+
+dependencies 表示我们要在生产环境下使用该依赖，devDependencies 则表示我们仅在开发环境使用该依赖。在打包时，一定要分清哪些包属于生产依赖，哪些属于开发依赖，尤其是在项目较大，依赖包较多的情况下。若在生产环境下错应或者少引依赖包，即便是成功打包，但在使用应用程序期间也会报错，导致打包好的程序无法正常运行。
+
+##### npm与cnpm的区别
+
+说到npm与cnpm的区别，可能大家都知道，但大家容易忽视的一点，是cnpm装的各种node_module，这种方式下所有的包都是扁平化的安装。一下子node_modules展开后有非常多的文件。导致了在打包的过程中非常慢。但是如果改用npm来安装node_modules的话，所有的包都是树状结构的，层级变深。
+
+由于这个不同，对一些项目比较大的应用，很容易出现打包过程慢且node内存溢出的问题（这也是在解决electron打包过程中困扰我比较久的问题，最后想到了npm与cnpm的这点不同，解决了node打包内存溢出的问题，从打包一次一小时优化到打包一次一分钟，极大的提高了效率）。
+
+完整流程可参考 [Electron 完整流程](https://segmentfault.com/a/1190000012839354)
