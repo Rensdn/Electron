@@ -162,5 +162,16 @@ dependencies 表示我们要在生产环境下使用该依赖，devDependencies 
 ````
 由于这个不同，对一些项目比较大的应用，很容易出现打包过程慢且node内存溢出的问题（这也是在解决electron打包过程中困扰我比较久的问题，最后想到了npm与cnpm的这点不同，解决了node打包内存溢出的问题，从打包一次一小时优化到打包一次一分钟，极大的提高了效率）。
 ````
+#### 参考文档
+* [Electron 官方文档](https://github.com/electron/electron/tree/master/docs)
+* [Electron 文档](https://electronjs.org/docs)
+* [Electron 教程](https://www.w3cschool.cn/electronmanual/wcx31ql6.html)
+* [Electron 中文网](https://electron.org.cn/)
+* [Electron 中文网文档](https://electron.org.cn/doc/index.html)
+* [electron-packager API](https://github.com/electron-userland/electron-packager/blob/master/docs/api.md#name)
+* [Electron构建打包](https://electron.org.cn/build.html)
+* [electron-packager](https://github.com/electron-userland/electron-packager)
+* [electron-builder](https://github.com/electron-userland/electron-builder)
+* [electron-builder](https://www.electron.build/)
 
-完整流程可参考 [Electron 完整流程](https://segmentfault.com/a/1190000012839354)
+完整流程可参考 [Electron 完整流程](https://segmentfault.com/a/1190000012839354) or [Electron 完整流程](https://electron.org.cn/doc/index.html) or [Electron](https://segmentfault.com/a/1190000011908324) 
