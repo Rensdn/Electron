@@ -14,7 +14,7 @@ electron 安装 &amp;&amp; electron 两种打包方案
     
 ### electron 两种打包方案
 
-1. electron-builder
+#### 1. electron-builder
 
 * 简介
 
@@ -105,5 +105,5 @@ electron 安装 &amp;&amp; electron 两种打包方案
     3、支持Auto Update；
     4、支持CLI和JS API两种使用方式；
 ````
-2. electron-packager
+#### 2. electron-packager
 
